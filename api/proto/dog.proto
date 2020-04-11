@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "pkg/pb/dog";
+
+service Dog{
+    rpc FindSmartDog(FindSmartDogMessage) returns (FindSmartDogResponse){}
+}
+
+message FindSmartDogMessage{
+    string catId = 1;
+}
+
+message FindSmartDogResponse{
+    string name = 1;
+    string kind = 2;
+}
