@@ -10,7 +10,7 @@ type DogService struct {
 }
 
 func (s *DogService) FindSmartDog(ctx context.Context, message *dog.FindSmartDogMessage) (*dog.FindSmartDogResponse, error) {
-	switch message.GetCatId() {
+	switch message.GetDogId() {
 	case "one":
 		return &dog.FindSmartDogResponse{
 			Name: "Number 1",

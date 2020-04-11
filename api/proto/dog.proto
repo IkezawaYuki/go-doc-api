@@ -7,7 +7,7 @@ service Dog{
 }
 
 message FindSmartDogMessage{
-    string catId = 1;
+    string dogId = 1;
 }
 
 message FindSmartDogResponse{
