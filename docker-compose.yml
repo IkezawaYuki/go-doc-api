@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  grpc-server:
+    build:
+      context: .
+      dockerfile: build/package/docker/grpc/Dockerfile
+      target: build
+    volumes:
+      - ./:/go/app
+    command: realize start --run
+    ports:
+      - 9998:9998
+      - 23450:23450
+    security_opt:
+      - apparmor:unconfined
+    cap_add:
+      - SYS_PTRACE
+    networks:
+      - grpc_training
+  grpc-gateway:
+    build:
+      context: .
+      dockerfile: build/package/docker/gateway/Dockerfile
+      target: build
+    command: go run ./cmd/gateway/main.go
+    environment:
+      DEPLOY_STAGE: local
+    ports:
+      - 8081:8081
+    networks:
+      - grpc_training
+networks:
+  grpc_training:
+    name: grpc_training
